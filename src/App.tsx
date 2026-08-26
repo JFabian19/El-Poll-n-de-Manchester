@@ -17,8 +17,8 @@ const BANNER_PATH = ""; // Reemplaza con la ruta de tu banner en public/ (ej: /b
 const MARQUEE_TEXT = "🔥 ¡BIENVENIDOS A EL POLLÓN DE MANCHESTER! • EL MEJOR SABOR EN POLLOS A LA BRASA Y PARRILLAS • PEDIDOS AL WHATSAPP • ";
 // ==========================================
 
-// Mapa de imágenes locales por defecto para platos conocidos
-const LOCAL_IMAGES: Record<string, string> = {};
+// Mapa de imágenes locales por categoría
+const LOCAL_CATEGORY_IMAGES: Record<string, string> = {};
 
 interface CartItem {
   nombre: string;
@@ -83,13 +83,13 @@ export default function App() {
         const formattedCategories: Category[] = cats.map(c => ({
           id: c.nombre.toLowerCase().replace(/\s+/g, '-'),
           nombre: c.nombre,
+          imagen: LOCAL_CATEGORY_IMAGES[c.nombre] || c['URL de imagen'] || undefined,
           items: dishes
             .filter(d => d.categoría === c.nombre)
             .map(d => ({
               nombre: d['nombre del plato'],
               descripcion: d.descripción,
-              precio: d.precio,
-              imagen: LOCAL_IMAGES[d['nombre del plato']] || d['URL de imagen'] || undefined
+              precio: d.precio
             }))
         }));
 
@@ -304,7 +304,7 @@ export default function App() {
         </motion.button>
       </div>
 
-      {/* Banner / Media Section */}
+      {/* Main Banner / Media Section */}
       <div className="px-5 pt-4 pb-2">
         {BANNER_PATH ? (
           <img src={BANNER_PATH} alt="Banner El Pollón de Manchester" className="w-full rounded-3xl object-cover aspect-[2/1] shadow-md border border-orange-100" />
@@ -318,7 +318,7 @@ export default function App() {
         )}
       </div>
 
-      {/* Category Pills Navigation */}
+      {/* Category Navigation Pills */}
       <div className="px-5 py-3 overflow-x-auto no-scrollbar sticky top-[73px] bg-[#FFFDF9]/95 backdrop-blur-sm z-40 border-b border-orange-100/60">
         <div className="flex gap-2 w-max py-0.5">
           {categories.map(cat => (
@@ -337,64 +337,69 @@ export default function App() {
         </div>
       </div>
 
-      {/* Dishes Catalog */}
+      {/* Menu Sections & Dish Lists */}
       <main className="flex-1 overflow-y-auto pb-32 px-5 pt-2">
         {categories.map(cat => (
-          <section key={cat.id} id={`cat-${cat.id}`} className="mb-10 scroll-mt-36">
-            <div className="mb-4 pt-2">
-              <div className="flex items-center gap-2 mb-1">
+          <section key={cat.id} id={`cat-${cat.id}`} className="mb-8 scroll-mt-36">
+            {/* Category Header */}
+            <div className="mb-3 pt-2">
+              <div className="flex items-center gap-2 mb-2">
                 <Utensils className="text-primary wave-icon" size={20} />
                 <h3 className="font-category font-bold text-primary text-[24px] uppercase tracking-wide category-underline">
                   {cat.nombre}
                 </h3>
               </div>
+
+              {/* Imagen de la Categoría */}
+              {cat.imagen ? (
+                <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] mb-3 border border-orange-100">
+                  <img
+                    src={cat.imagen}
+                    alt={cat.nombre}
+                    className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
+                    onClick={() => setSelectedImage(cat.imagen || null)}
+                  />
+                </div>
+              ) : (
+                <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 flex flex-col items-center justify-center text-center p-3 border border-dashed border-primary/25 mb-3">
+                  <span className="font-dish font-bold text-[10px] text-primary/70 uppercase tracking-widest">
+                    aca va a imagen
+                  </span>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-2 gap-3.5">
+            {/* Lista de Platos de la Categoría */}
+            <div className="flex flex-col gap-2.5">
               {cat.items.map((dish, idx) => (
                 <motion.div
                   key={idx}
-                  whileHover={{ y: -3 }}
-                  className="bg-white rounded-[1.75rem] overflow-hidden flex flex-col shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200"
+                  whileHover={{ y: -2 }}
+                  className="bg-white rounded-2xl p-4 shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex items-center justify-between gap-3"
                 >
-                  <div className="bg-orange-50/50 aspect-square flex items-center justify-center relative overflow-hidden p-3 border-b border-stone-100">
-                    {dish.imagen ? (
-                      <img
-                        src={dish.imagen}
-                        alt={dish.nombre}
-                        className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform rounded-xl"
-                        onClick={() => setSelectedImage(dish.imagen || null)}
-                      />
-                    ) : (
-                      <span className="font-dish font-bold text-[10px] text-primary/70 uppercase tracking-wider text-center">
-                        aca va a imagen
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="p-3.5 flex flex-col flex-1">
-                    <h4 className="font-dish font-bold text-stone-900 text-[13px] leading-snug mb-1">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-dish font-bold text-stone-900 text-[14px] leading-snug mb-1">
                       {dish.nombre}
                     </h4>
                     {dish.descripcion && (
-                      <p className="text-[10px] text-stone-500 leading-relaxed mb-2 line-clamp-3">
+                      <p className="text-[11px] text-stone-500 leading-relaxed line-clamp-2">
                         {dish.descripcion}
                       </p>
                     )}
-                    <div className="flex-1 min-h-[4px]"></div>
-                    <div className="flex items-center justify-between mt-2 pt-1 border-t border-stone-50">
-                      <span className="font-dish font-extrabold text-primary text-[15px] whitespace-nowrap">
-                        {dish.precio}
-                      </span>
-                      <motion.button
-                        whileTap={{ scale: 0.85 }}
-                        onClick={() => addToCart(dish)}
-                        className="w-8 h-8 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-colors duration-200 shrink-0 shadow-sm"
-                        title="Agregar al pedido"
-                      >
-                        <Plus size={16} strokeWidth={3} />
-                      </motion.button>
-                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="font-dish font-extrabold text-primary text-[15px] whitespace-nowrap">
+                      {dish.precio}
+                    </span>
+                    <motion.button
+                      whileTap={{ scale: 0.85 }}
+                      onClick={() => addToCart(dish)}
+                      className="w-8 h-8 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-colors duration-200 shadow-sm"
+                      title="Agregar al pedido"
+                    >
+                      <Plus size={16} strokeWidth={3} />
+                    </motion.button>
                   </div>
                 </motion.div>
               ))}
@@ -574,7 +579,7 @@ export default function App() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               src={selectedImage}
-              alt="Plato ampliado"
+              alt="Imagen ampliada"
               className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />

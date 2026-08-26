@@ -8,11 +8,11 @@ export interface SheetDish {
   'nombre del plato': string;
   descripción: string;
   precio: string;
-  'URL de imagen': string;
 }
 
 export interface SheetCategory {
   nombre: string;
+  'URL de imagen'?: string;
 }
 
 export const fetchSheetData = async <T>(sheetName: string): Promise<T[]> => {
@@ -37,7 +37,6 @@ export const fetchSheetData = async <T>(sheetName: string): Promise<T[]> => {
 };
 
 // Configura aquí la URL de tu Google Apps Script Web App para poder enviar datos
-// Instrucciones: Crea un Apps Script, pega el código que te di, impleméntalo como Aplicación Web y pega la URL de ejecución aquí.
 export const WEB_APP_URL = '';
 
 export const submitSheetData = async (sheetName: string, data: any): Promise<boolean> => {

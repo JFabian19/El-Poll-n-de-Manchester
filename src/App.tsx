@@ -400,17 +400,32 @@ export default function App() {
 
               {/* Imagen de la Categoría */}
               {cat.imagen ? (
-                <div className="relative w-full rounded-2xl overflow-hidden shadow-md aspect-[21/9] mb-3 border border-orange-200/80 group">
-                  <img
-                    src={cat.imagen}
-                    alt={cat.nombre}
-                    className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300"
-                    onClick={() => setSelectedImage(cat.imagen || null)}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                <div className="relative p-[2px] rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-red-600 shadow-md hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-300 group overflow-hidden mb-3.5">
+                  <div className="relative rounded-[14px] overflow-hidden aspect-[21/9] bg-stone-950">
+                    <img
+                      src={cat.imagen}
+                      alt={cat.nombre}
+                      className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-500 ease-out"
+                      onClick={() => setSelectedImage(cat.imagen || null)}
+                    />
+                    {/* Vignette & Gradients */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-amber-300/30 rounded-[14px] pointer-events-none" />
+                    <div className="absolute inset-0 shimmer opacity-15 pointer-events-none" />
+
+                    {/* Corner Ornaments */}
+                    <div className="contour-corner-tl !top-1.5 !left-1.5 !w-2.5 !h-2.5" />
+                    <div className="contour-corner-br !bottom-1.5 !right-1.5 !w-2.5 !h-2.5" />
+
+                    {/* Bottom Badge */}
+                    <div className="absolute bottom-2 right-2 bg-black/75 backdrop-blur-md border border-amber-400/50 text-amber-300 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1 shadow z-10 pointer-events-none">
+                      <Sparkles size={9} className="text-amber-400 animate-pulse" />
+                      <span>{cat.nombre}</span>
+                    </div>
+                  </div>
                 </div>
               ) : cat.id !== 'promociones' ? (
-                <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 flex flex-col items-center justify-center text-center p-3 border border-dashed border-primary/25 mb-3">
+                <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 flex flex-col items-center justify-center text-center p-3 border border-dashed border-primary/25 mb-3.5">
                   <span className="font-dish font-bold text-[10px] text-primary/70 uppercase tracking-widest">
                     aca va a imagen
                   </span>

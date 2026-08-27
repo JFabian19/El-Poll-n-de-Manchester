@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ShoppingBag, Plus, Minus, ChevronRight, X, Trash2, Utensils, Facebook, MapPin, Loader2, Gift, Star, Flame } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, ChevronRight, X, Trash2, Utensils, Facebook, MapPin, Loader2, Gift, Star, Flame, Eye, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { fetchSheetData, submitSheetData, SheetDish, SheetCategory, SHEET_ID } from './services/googleSheets';
 import { DEFAULT_MENU_DATA, Dish, Category } from './data/menuData';
@@ -13,7 +13,7 @@ const WHATSAPP_NUMBER = "51900000000"; // Reemplaza con tu número de WhatsApp c
 const FACEBOOK_URL = "https://facebook.com/";
 const MAPS_URL = "https://www.google.com/maps/";
 const LOGO_FOOTER_PATH = ""; // Reemplaza con la ruta de tu logo en public/ (ej: /logo.png)
-const BANNER_PATH = ""; // Reemplaza con la ruta de tu banner en public/ (ej: /banner.png)
+const BANNER_PATH = "/banner-pollon.webp"; // Banner principal en public/
 const MARQUEE_TEXT = "🔥 ¡BIENVENIDOS A EL POLLÓN DE MANCHESTER! • EL MEJOR SABOR EN POLLOS A LA BRASA Y PARRILLAS • PEDIDOS AL WHATSAPP • ";
 // ==========================================
 
@@ -89,7 +89,8 @@ export default function App() {
             .map(d => ({
               nombre: d['nombre del plato'],
               descripcion: d.descripción,
-              precio: d.precio
+              precio: d.precio,
+              imagen: (d as any)['URL de imagen'] || (d as any).imagen || undefined
             }))
         }));
 
@@ -344,7 +345,11 @@ export default function App() {
             {/* Category Header */}
             <div className="mb-3 pt-2">
               <div className="flex items-center gap-2 mb-2">
-                <Utensils className="text-primary wave-icon" size={20} />
+                {cat.id === 'promociones' ? (
+                  <Flame className="text-primary animate-bounce" size={22} />
+                ) : (
+                  <Utensils className="text-primary wave-icon" size={20} />
+                )}
                 <h3 className="font-category font-bold text-primary text-[24px] uppercase tracking-wide category-underline">
                   {cat.nombre}
                 </h3>
@@ -360,49 +365,118 @@ export default function App() {
                     onClick={() => setSelectedImage(cat.imagen || null)}
                   />
                 </div>
-              ) : (
+              ) : cat.id !== 'promociones' ? (
                 <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 flex flex-col items-center justify-center text-center p-3 border border-dashed border-primary/25 mb-3">
                   <span className="font-dish font-bold text-[10px] text-primary/70 uppercase tracking-widest">
                     aca va a imagen
                   </span>
                 </div>
-              )}
+              ) : null}
             </div>
 
             {/* Lista de Platos de la Categoría */}
-            <div className="flex flex-col gap-2.5">
-              {cat.items.map((dish, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -2 }}
-                  className="bg-white rounded-2xl p-4 shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex items-center justify-between gap-3"
-                >
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-dish font-bold text-stone-900 text-[14px] leading-snug mb-1">
-                      {dish.nombre}
-                    </h4>
-                    {dish.descripcion && (
-                      <p className="text-[11px] text-stone-500 leading-relaxed line-clamp-2">
-                        {dish.descripcion}
-                      </p>
-                    )}
-                  </div>
-                  
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="font-dish font-extrabold text-primary text-[15px] whitespace-nowrap">
-                      {dish.precio}
-                    </span>
-                    <motion.button
-                      whileTap={{ scale: 0.85 }}
-                      onClick={() => addToCart(dish)}
-                      className="w-8 h-8 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-colors duration-200 shadow-sm"
-                      title="Agregar al pedido"
+            <div className="flex flex-col gap-3">
+              {cat.items.map((dish, idx) => {
+                if (dish.imagen) {
+                  return (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -2 }}
+                      className="bg-white rounded-3xl overflow-hidden shadow-md border border-orange-200/80 hover:shadow-xl transition-all duration-200 flex flex-col"
                     >
-                      <Plus size={16} strokeWidth={3} />
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Imagen de la Promo con zoom */}
+                      <div
+                        className="relative w-full aspect-[4/3] bg-stone-900 overflow-hidden cursor-pointer group"
+                        onClick={() => setSelectedImage(dish.imagen || null)}
+                      >
+                        <img
+                          src={dish.imagen}
+                          alt={dish.nombre}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 pointer-events-none" />
+
+                        {dish.badge && (
+                          <span className="absolute top-3 left-3 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-lg border border-amber-300/40 flex items-center gap-1 tracking-wider z-10">
+                            <Flame size={13} className="text-amber-300" />
+                            {dish.badge}
+                          </span>
+                        )}
+
+                        <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow z-10">
+                          <Eye size={12} />
+                          Toca para ampliar
+                        </div>
+                      </div>
+
+                      {/* Información y botón */}
+                      <div className="p-4 flex flex-col gap-2 bg-gradient-to-b from-white to-orange-50/20">
+                        <div>
+                          <h4 className="font-dish font-extrabold text-stone-900 text-[16px] leading-snug">
+                            {dish.nombre}
+                          </h4>
+                          {dish.descripcion && (
+                            <p className="text-[12px] text-stone-600 leading-relaxed mt-1">
+                              {dish.descripcion}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex items-center justify-between pt-3 mt-1 border-t border-stone-100">
+                          <div>
+                            <span className="text-[9px] text-stone-400 font-bold uppercase tracking-wider block">Precio Promo</span>
+                            <span className="font-dish font-black text-primary text-[20px] leading-none">
+                              {dish.precio}
+                            </span>
+                          </div>
+
+                          <motion.button
+                            whileTap={{ scale: 0.92 }}
+                            onClick={() => addToCart(dish)}
+                            className="bg-primary hover:bg-red-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-primary/25 transition-all"
+                          >
+                            <Plus size={16} strokeWidth={3} />
+                            Agregar al Pedido
+                          </motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                }
+
+                return (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -2 }}
+                    className="bg-white rounded-2xl p-4 shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex items-center justify-between gap-3"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-dish font-bold text-stone-900 text-[14px] leading-snug mb-0.5">
+                        {dish.nombre}
+                      </h4>
+                      {dish.descripcion && (
+                        <p className="text-[11px] text-stone-500 leading-relaxed line-clamp-2">
+                          {dish.descripcion}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="font-dish font-extrabold text-primary text-[15px] whitespace-nowrap">
+                        {dish.precio}
+                      </span>
+                      <motion.button
+                        whileTap={{ scale: 0.85 }}
+                        onClick={() => addToCart(dish)}
+                        className="w-8 h-8 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-colors duration-200 shadow-sm"
+                        title="Agregar al pedido"
+                      >
+                        <Plus size={16} strokeWidth={3} />
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </section>
         ))}

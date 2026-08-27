@@ -2,6 +2,8 @@ export interface Dish {
   nombre: string;
   descripcion?: string;
   precio: string;
+  imagen?: string;
+  badge?: string;
 }
 
 export interface Category {
@@ -13,58 +15,86 @@ export interface Category {
 
 export const DEFAULT_MENU_DATA: Category[] = [
   {
+    id: "promociones",
+    nombre: "Promociones",
+    imagen: "/categories/promociones.webp",
+    items: [
+      {
+        nombre: "Promo Martes - 1/2 Pollo a la Brasa",
+        descripcion: "1/2 Pollo a la brasa + papas fritas + ensalada + cremas + 1 gaseosa personal (Inca Kola / Coca Cola).",
+        precio: "S/. 35.00",
+        imagen: "/promos/promo-martes.webp",
+        badge: "Promo Martes"
+      },
+      {
+        nombre: "Jueves de Patas - 1/4 de Pollo",
+        descripcion: "Todos los jueves: 1/4 de pollo a la brasa + papas fritas + ensalada fresca + cremas.",
+        precio: "S/. 12.00",
+        imagen: "/promos/promo-jueves.webp",
+        badge: "Jueves de Patas"
+      },
+      {
+        nombre: "Miércoles de Mostrito",
+        descripcion: "¡Todos los miércoles por la compra de un mostrito El Pollón te pone la gaseosa Pepsi 300ml! (Mostrito con arroz chaufa + papas + cremas).",
+        precio: "S/. 13.00",
+        imagen: "/promos/promo-miercoles.webp",
+        badge: "Miércoles de Mostrito"
+      }
+    ]
+  },
+  {
     id: "pollos-a-la-brasa",
     nombre: "Pollos a la Brasa",
-    imagen: "",
+    imagen: "/categories/pollos-a-la-brasa.webp",
     items: [
       {
         nombre: "1/8 de Pollo a la Brasa",
-        descripcion: "Papas fritas + ensalada fresca + cremas de la casa.",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 11.00"
       },
       {
         nombre: "1/4 de Pollo a la Brasa",
-        descripcion: "Papas fritas + ensalada fresca + cremas de la casa.",
-        precio: "S/. 17.50"
+        descripcion: "+ papas + ensalada + cremas",
+        precio: "S/. 17.00"
       },
       {
-        nombre: "Mostrita",
-        descripcion: "1/8 de pollo + arroz chaufa al wok + papas fritas + cremas.",
+        nombre: "Mostrito",
+        descripcion: "+ Arroz chaufa + papas + cremas",
         precio: "S/. 13.00"
       },
       {
         nombre: "Mostro",
-        descripcion: "1/4 de pollo + arroz chaufa al wok + papas fritas + cremas.",
+        descripcion: "+ Arroz chaufa + papas + cremas",
         precio: "S/. 19.00"
       },
       {
         nombre: "1/2 Pollo a la Brasa",
-        descripcion: "Papas fritas + ensalada fresca + cremas de la casa.",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 32.00"
       },
       {
-        nombre: "1 Pollo a la Brasa Entero",
-        descripcion: "Pollo entero a la brasa + papas fritas + ensalada familiar + cremas.",
+        nombre: "1 Pollo a la Brasa entero",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 58.00"
       },
       {
-        nombre: "1 Pollo a la Brasa + 1/4 Solo",
-        descripcion: "1 Pollo entero + 1/4 pollo solo + papas fritas + ensalada + cremas.",
+        nombre: "1 Pollo a la Brasa + 1/4 solo",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 63.00"
       },
       {
-        nombre: "1 Pollo a la Brasa + Gaseosa 1.5 Lt",
-        descripcion: "1 Pollo a la brasa entero + gaseosa 1.5 Lt. + papas fritas + ensalada + cremas.",
+        nombre: "1 Pollo a la Brasa + Gaseosa 1.5 Lt.",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 63.00"
       },
       {
         nombre: "MEGA MANCHESTER",
-        descripcion: "1 Pollo + 1/4 pollo solo + gaseosa 1.5 Lt. + papas fritas + ensalada + cremas.",
+        descripcion: "1 Pollo + 1/4 pollo solo + gaseosas 1.5 Lt. + papas + ensalada + cremas",
         precio: "S/. 68.00"
       },
       {
         nombre: "DON MANCHESTER",
-        descripcion: "1 Pollo + 1/2 pollo solo + gaseosa 1.5 Lt. + papas fritas + ensalada + cremas.",
+        descripcion: "1 Pollo + 1/2 pollo solo + gaseosa 1.5 Lt. + papas + ensalada + cremas.",
         precio: "S/. 78.00"
       }
     ]
@@ -72,26 +102,26 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "combos-parrilleros",
     nombre: "Combos Parrilleros",
-    imagen: "",
+    imagen: "/categories/combos-parrilleros.webp",
     items: [
       {
-        nombre: "Combo Filete",
-        descripcion: "1 Filete de pollo + 1 anticucho + 1 chorizo + papas fritas + ensalada + cremas.",
+        nombre: "COMBO FILETE",
+        descripcion: "1 Filete de pollo + 1 Anticucho + 1 chorizo + papas + ensalada + cremas",
         precio: "S/. 27.00"
       },
       {
-        nombre: "Combo Chuleta",
-        descripcion: "1 Chuleta + molleja + 1 anticucho + papas fritas + ensalada + cremas.",
+        nombre: "COMBO CHULETA",
+        descripcion: "1 chuleta + molleja + 1 anticucho + papas + ensalada + cremas",
         precio: "S/. 29.00"
       },
       {
-        nombre: "Combo Churrasco",
-        descripcion: "1 Churrasco + 1 brocheta + 1 chorizo + papas fritas + ensalada + cremas.",
+        nombre: "COMBO CHURRASCO",
+        descripcion: "1 Churrasco + 1 brocheta + 1 chorizo + papas + ensalada + cremas",
         precio: "S/. 31.00"
       },
       {
-        nombre: "Combo Lomo",
-        descripcion: "1 Lomo + 1 brocheta + 1 chorizo + papas fritas + ensalada + cremas.",
+        nombre: "COMBO LOMO",
+        descripcion: "1 Lomo + 1 brocheta + 1 chorizo + papas + ensalada + cremas",
         precio: "S/. 35.00"
       }
     ]
@@ -99,56 +129,56 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "carnes-a-la-parrilla",
     nombre: "Carnes a la Parrilla",
-    imagen: "",
+    imagen: "/categories/carnes-a-la-parrilla.webp",
     items: [
       {
-        nombre: "Chuleta a la Parrilla",
-        descripcion: "Jugosa chuleta a la parrilla + papas fritas + ensalada + cremas.",
+        nombre: "Chuleta",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 17.00"
       },
       {
-        nombre: "Churrasco a la Parrilla",
-        descripcion: "Corte de churrasco a la brasa + papas fritas + ensalada + cremas.",
+        nombre: "Churrasco",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 19.00"
       },
       {
-        nombre: "Filete a la Parrilla",
-        descripcion: "Filete sazonado a la parrilla + papas fritas + ensalada + cremas.",
+        nombre: "Filete",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 16.00"
       },
       {
-        nombre: "Anticuchos",
-        descripcion: "Porción de anticuchos de corazón a la parrilla + papas + ensalada + cremas.",
+        nombre: "Anticucho",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 16.00"
       },
       {
-        nombre: "Mollejas a la Parrilla",
-        descripcion: "Deliciosas mollejitas a la parrilla + papas fritas + ensalada + cremas.",
+        nombre: "Mollejas",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 16.00"
       },
       {
-        nombre: "Lomo Fino a la Parrilla",
-        descripcion: "Corte selecto de lomo fino + papas fritas + ensalada + cremas.",
+        nombre: "Lomo Fino",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 29.00"
       },
       {
-        nombre: "Bife a la Parrilla",
-        descripcion: "Corte de bife a la parrilla + papas fritas + ensalada + cremas.",
+        nombre: "Bife",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 27.00"
       },
       {
         nombre: "Costilla a la BBQ",
-        descripcion: "Tierna costilla bañada en salsa BBQ + papas fritas + ensalada + cremas.",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 35.00"
       },
       {
         nombre: "Filete de Pierna",
-        descripcion: "Filete de pierna a la parrilla + papas fritas + ensalada + cremas.",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 15.00"
       },
       {
-        nombre: "Chorizo a la Parrilla (2 und)",
-        descripcion: "2 Chorizos parrilleros + papas fritas + ensalada + cremas.",
+        nombre: "Chorizo (2)",
+        descripcion: "+ papas + ensalada + cremas",
         precio: "S/. 15.00"
       }
     ]
@@ -156,21 +186,21 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "parrillas-familiares",
     nombre: "Parrillas Familiares",
-    imagen: "",
+    imagen: "/categories/parrillas-familiares.webp",
     items: [
       {
-        nombre: "Parrilla para (2)",
-        descripcion: "1 Jugoso lomo + filete + 2 anticuchos + mollejitas + papas + ensalada + cremas + gaseosa 1.5 Lt. o limonada 1.5 Lt.",
-        precio: "S/. 62.00"
+        nombre: "PARRILLA PARA (2)",
+        descripcion: "1 Jugoso Lomo + filete + (2) anticuchos + mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o Limonada 1.5 Lt.",
+        precio: "S/. 82.00"
       },
       {
-        nombre: "Parrilla Familiar",
-        descripcion: "Jugoso lomo + 1 bife + 1 chuleta de cerdo + 2 anticuchos + 2 chorizos + mollejitas + ensalada + cremas + gaseosa 1.5 Lt. o limonada 1.5 Lt.",
+        nombre: "PARRILLA FAMILIAR",
+        descripcion: "+ Jugoso Lomo + filete + 1 chuleta de cerdo + 2 anticuchos + 2 chorizos + mollejitas + ensalada + cremas + gaseosa 1.5 Lt. o Limonada 1.5 Lt.",
         precio: "S/. 98.00"
       },
       {
-        nombre: "Parrilla La Pollona",
-        descripcion: "1 Jugoso lomo + 1 bife + 1/4 de pollo a la brasa + 2 anticuchos + 2 chorizos + mollejitas + papas + ensalada + cremas + gaseosa 1.5 Lt., limonada 1.5 Lt. o Vino Tabernero/Borgoña.",
+        nombre: "PARRILLA LA POLLONA",
+        descripcion: "1 Jugoso Lomo + 1 Bife + 1/4 de pollo a la brasa + 2 anticuchos + 2 chorizos + Mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o + Limonada 1.5 Lt. o Vino Tabernero Borgoña.",
         precio: "S/. 110.00"
       }
     ]
@@ -178,26 +208,26 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "menu-parrillero",
     nombre: "Menú Parrillero",
-    imagen: "",
+    imagen: "/categories/menu-parrillero.webp",
     items: [
       {
         nombre: "Menú Filete de Pollo",
-        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Incluye: arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.",
+        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso chicha o limonada",
         precio: "S/. 11.00"
       },
       {
         nombre: "Menú Churrasco",
-        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Incluye: arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.",
+        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada",
         precio: "S/. 12.00"
       },
       {
         nombre: "Menú Lomo Saltado",
-        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Incluye: arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.",
+        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensaladas + cremas + 1 vaso de chicha o limonada",
         precio: "S/. 12.00"
       },
       {
         nombre: "Menú Chuleta",
-        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Incluye: arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.",
+        descripcion: "Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.",
         precio: "S/. 12.00"
       }
     ]
@@ -205,31 +235,31 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "platos-a-la-carta",
     nombre: "Platos a la Carta",
-    imagen: "",
+    imagen: "/categories/platos-a-la-carta.webp",
     items: [
       {
         nombre: "Lomo Saltado",
-        descripcion: "Jugosos trozos de lomo fino salteados al wok con cebolla, tomate, papas fritas y arroz blanco.",
+        descripcion: "",
         precio: "S/. 20.00"
       },
       {
         nombre: "Pollo Saltado",
-        descripcion: "Trozos de pollo salteados al wok con cebolla, tomate, papas fritas y arroz blanco.",
+        descripcion: "",
         precio: "S/. 18.00"
       },
       {
         nombre: "Tallarín Saltado de Pollo",
-        descripcion: "Tallarines salteados con tiras de pechuga de pollo, vegetales frescos y sazón criolla.",
+        descripcion: "",
         precio: "S/. 18.00"
       },
       {
         nombre: "Tallarín Saltado de Carne",
-        descripcion: "Tallarines salteados al wok con tierna carne de res, cebolla, tomate y ají amarillo.",
+        descripcion: "",
         precio: "S/. 20.00"
       },
       {
         nombre: "Chaufa de Carne",
-        descripcion: "Arroz chaufa al estilo oriental salteado al wok con trozos de carne y huevo.",
+        descripcion: "",
         precio: "S/. 20.00"
       }
     ]
@@ -237,26 +267,26 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "guarniciones",
     nombre: "Guarniciones",
-    imagen: "",
+    imagen: "/categories/guarniciones.webp",
     items: [
       {
         nombre: "1 Porción de Papas",
-        descripcion: "Porción entera de papas fritas doradas y crujientes.",
+        descripcion: "",
         precio: "S/. 17.00"
       },
       {
         nombre: "1/2 Porción de Papas",
-        descripcion: "Media porción de papas fritas crujientes.",
+        descripcion: "",
         precio: "S/. 9.00"
       },
       {
         nombre: "1 Porción de Arroz Chaufa",
-        descripcion: "Porción de delicioso arroz chaufa clásico salteado al wok.",
+        descripcion: "",
         precio: "S/. 12.00"
       },
       {
         nombre: "Ensalada Clásica",
-        descripcion: "Fresca ensalada mixta de lechuga, tomate, pepino y vinagreta de la casa.",
+        descripcion: "",
         precio: "S/. 6.00"
       }
     ]
@@ -264,137 +294,137 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "gaseosas",
     nombre: "Gaseosas",
-    imagen: "",
+    imagen: "/categories/gaseosas.webp",
     items: [
       {
-        nombre: "Gaseosa Mediana",
-        descripcion: "Gaseosa personal tamaño mediano.",
+        nombre: "Mediana",
+        descripcion: "",
         precio: "S/. 2.50"
       },
       {
         nombre: "Gaseosa 1/2 Lt.",
-        descripcion: "Botella personal de 500 ml (Inca Kola / Coca Cola).",
+        descripcion: "",
         precio: "S/. 3.50"
       },
       {
         nombre: "Gordita",
-        descripcion: "Gaseosa formato gordita.",
-        precio: "S/. 5.50"
+        descripcion: "",
+        precio: "S/. 5.00"
       },
       {
         nombre: "Gaseosa 1 Litro",
-        descripcion: "Botella de 1 Litro.",
+        descripcion: "",
         precio: "S/. 7.00"
       },
       {
         nombre: "Gaseosa 1.5 Litro",
-        descripcion: "Botella de 1.5 Litros.",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
         nombre: "Gaseosa 3 Litros",
-        descripcion: "Botella familiar de 3 Litros.",
+        descripcion: "",
         precio: "S/. 15.00"
       },
       {
-        nombre: "Agua de Mesa",
-        descripcion: "Botella de agua mineral de mesa.",
+        nombre: "Agua",
+        descripcion: "",
         precio: "S/. 2.50"
       }
     ]
   },
   {
     id: "bebidas",
-    nombre: "Bebidas Naturales",
-    imagen: "",
+    nombre: "Bebidas",
+    imagen: "/categories/bebidas.webp",
     items: [
       {
-        nombre: "Jarra de Chicha Morada",
-        descripcion: "Tradicional chicha morada hecha en casa con maíz morado, piña y canela.",
+        nombre: "Chicha",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
-        nombre: "Jarra de Maracuyá",
-        descripcion: "Refresco natural y refrescante de pura fruta maracuyá.",
+        nombre: "Maracuya",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
-        nombre: "Jarra de Limonada",
-        descripcion: "Limonada clásica y refrescante recién preparada.",
+        nombre: "Limonada",
+        descripcion: "",
         precio: "S/. 12.00"
       },
       {
-        nombre: "Jarra de Limonada Frozen",
-        descripcion: "Limonada helada y granizada estilo frozen.",
+        nombre: "Limonada Frozen",
+        descripcion: "",
         precio: "S/. 14.00"
       }
     ]
   },
   {
     id: "tragos",
-    nombre: "Tragos & Cócteles",
-    imagen: "",
+    nombre: "Tragos",
+    imagen: "/categories/tragos.webp",
     items: [
       {
-        nombre: "Pisco Sour",
-        descripcion: "El cóctel bandera del Perú, preparado con pisco quebranta, limón y amargo de angostura.",
+        nombre: "Pisco Saur",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
         nombre: "Algarrobina",
-        descripcion: "Cremoso y dulce cóctel a base de pisco, leche evaporada y jarabe de algarrobina.",
+        descripcion: "",
         precio: "S/. 12.00"
       },
       {
         nombre: "Piña Colada",
-        descripcion: "Deliciosa combinación de ron blanco, crema de coco y jugo de piña.",
+        descripcion: "",
         precio: "S/. 12.00"
       },
       {
         nombre: "Daiquiri de Durazno",
-        descripcion: "Refrescante cóctel frozen preparado con ron y pulpa de durazno.",
+        descripcion: "",
         precio: "S/. 12.00"
       },
       {
         nombre: "Chilcano de Pisco",
-        descripcion: "Refrescante pisco con ginger ale, zumo de limón y hielo.",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
         nombre: "Cuba Libre",
-        descripcion: "Ron añejo servido con gaseosa cola y rodaja de limón.",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
-        nombre: "Perú Libre",
-        descripcion: "Pisco peruano servido con gaseosa oscura y toque cítrico de limón.",
+        nombre: "Peru Libre",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
         nombre: "Machu Picchu",
-        descripcion: "Vistoso cóctel tricolor preparado con pisco, crema de menta, jugo de naranja y granadina.",
+        descripcion: "",
         precio: "S/. 12.00"
       }
     ]
   },
   {
     id: "licores",
-    nombre: "Cervezas & Licores",
-    imagen: "",
+    nombre: "Licores",
+    imagen: "/categories/licores.webp",
     items: [
       {
-        nombre: "Cerveza Pilsen Callao",
-        descripcion: "Botella personal helada.",
+        nombre: "Pilsen",
+        descripcion: "",
         precio: "S/. 9.00"
       },
       {
-        nombre: "Cusqueña Negra",
-        descripcion: "Cerveza Cusqueña Malta Negra personal helada.",
+        nombre: "Cuzqueña Negra",
+        descripcion: "",
         precio: "S/. 10.00"
       },
       {
-        nombre: "Cusqueña de Trigo",
-        descripcion: "Cerveza Cusqueña de Trigo personal helada.",
+        nombre: "Cuzqueña de Trigo",
+        descripcion: "",
         precio: "S/. 10.00"
       }
     ]
@@ -402,16 +432,16 @@ export const DEFAULT_MENU_DATA: Category[] = [
   {
     id: "vinos",
     nombre: "Vinos",
-    imagen: "",
+    imagen: "/categories/vinos.webp",
     items: [
       {
         nombre: "Vino Santiago Queirolo",
-        descripcion: "Botella de vino Santiago Queirolo (Magdalena / Borgoña).",
+        descripcion: "",
         precio: "S/. 35.00"
       },
       {
-        nombre: "Vino Rosé",
-        descripcion: "Botella de vino Rosé seleccionado.",
+        nombre: "Vino Rose",
+        descripcion: "",
         precio: "S/. 35.00"
       }
     ]

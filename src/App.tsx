@@ -9,10 +9,10 @@ import { DEFAULT_MENU_DATA, Dish, Category } from './data/menuData';
 // ==========================================
 const RESTAURANTE_NAME = "El Pollón de Manchester";
 const RESTAURANTE_SLOGAN = "Pollos a la Brasa & Parrillas";
-const WHATSAPP_NUMBER = "51900000000"; // Reemplaza con tu número de WhatsApp con código de país (ej: 51 para Perú)
+const WHATSAPP_NUMBER = "51952830614"; // Número de WhatsApp para pedidos
 const FACEBOOK_URL = "https://facebook.com/";
 const MAPS_URL = "https://www.google.com/maps/";
-const LOGO_FOOTER_PATH = ""; // Reemplaza con la ruta de tu logo en public/ (ej: /logo.png)
+const LOGO_FOOTER_PATH = "/logo-pollon.webp"; // Logo en public/
 const BANNER_PATH = "/banner-pollon.webp"; // Banner principal en public/
 const MARQUEE_TEXT = "🔥 ¡BIENVENIDOS A EL POLLÓN DE MANCHESTER! • EL MEJOR SABOR EN POLLOS A LA BRASA Y PARRILLAS • PEDIDOS AL WHATSAPP • ";
 // ==========================================
@@ -142,10 +142,16 @@ export default function App() {
     );
   };
 
+  const parsePrice = (priceStr: string | number): number => {
+    if (typeof priceStr === 'number') return priceStr;
+    if (!priceStr) return 0;
+    const match = priceStr.toString().replace(',', '.').match(/(\d+(\.\d+)?)/);
+    return match ? parseFloat(match[0]) : 0;
+  };
+
   const calculateTotal = () => {
     return cart.reduce((acc, item) => {
-      const cleanPrice = item.precio.replace(/^[^\d.]*/, '').replace(',', '.');
-      const num = parseFloat(cleanPrice) || 0;
+      const num = parsePrice(item.precio);
       return acc + num * item.cantidad;
     }, 0);
   };
@@ -232,13 +238,22 @@ export default function App() {
   return (
     <div className="max-w-md mx-auto bg-[#FFFDF9] min-h-screen relative shadow-2xl overflow-hidden flex flex-col font-sans">
       {/* Header */}
-      <header className="sticky top-0 bg-white/95 backdrop-blur-md z-50 px-5 py-4 flex justify-between items-center border-b border-orange-100">
-        <div className="flex flex-col items-start">
-          <div className="flex items-center gap-1.5">
-            <Flame className="w-5 h-5 text-primary animate-pulse" />
-            <h1 className="font-title text-[24px] tracking-wide text-primary leading-none uppercase">{RESTAURANTE_NAME}</h1>
+      <header className="sticky top-0 bg-white/95 backdrop-blur-md z-50 px-4 py-3 flex justify-between items-center border-b border-orange-100 shadow-sm">
+        <div className="flex items-center gap-2.5">
+          {LOGO_FOOTER_PATH && (
+            <img 
+              src={LOGO_FOOTER_PATH} 
+              alt="Logo El Pollón de Manchester" 
+              className="w-10 h-10 object-cover rounded-full border-2 border-amber-400 shadow-md ring-2 ring-primary/20" 
+            />
+          )}
+          <div className="flex flex-col items-start">
+            <div className="flex items-center gap-1.5">
+              <Flame className="w-4 h-4 text-primary animate-pulse" />
+              <h1 className="font-title text-[20px] sm:text-[22px] tracking-wide text-primary leading-none uppercase">{RESTAURANTE_NAME}</h1>
+            </div>
+            <span className="font-slogan text-[10px] text-secondary font-bold tracking-wider mt-0.5">{RESTAURANTE_SLOGAN}</span>
           </div>
-          <span className="font-slogan text-[11px] text-secondary font-bold tracking-wider mt-1">{RESTAURANTE_SLOGAN}</span>
         </div>
         <div className="flex items-center gap-2">
           {FACEBOOK_URL && (
@@ -308,7 +323,35 @@ export default function App() {
       {/* Main Banner / Media Section */}
       <div className="px-5 pt-4 pb-2">
         {BANNER_PATH ? (
-          <img src={BANNER_PATH} alt="Banner El Pollón de Manchester" className="w-full rounded-3xl object-cover aspect-[2/1] shadow-md border border-orange-100" />
+          <div className="relative p-[3px] rounded-[26px] bg-gradient-to-r from-amber-400 via-red-600 to-amber-500 shadow-xl banner-glow-frame group overflow-hidden">
+            <div className="relative rounded-[23px] overflow-hidden aspect-[2/1] bg-stone-950">
+              {/* Imagen Banner */}
+              <img 
+                src={BANNER_PATH} 
+                alt="Banner El Pollón de Manchester" 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
+              />
+              
+              {/* Vignette & Gradient Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-amber-300/40 rounded-[23px] pointer-events-none" />
+
+              {/* Shimmer sweep */}
+              <div className="absolute inset-0 shimmer opacity-20 pointer-events-none" />
+
+              {/* Corner Decorative Ornaments */}
+              <div className="contour-corner-tl" />
+              <div className="contour-corner-tr" />
+              <div className="contour-corner-bl" />
+              <div className="contour-corner-br" />
+
+              {/* Badge Overlay */}
+              <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-md border border-amber-400/50 text-amber-300 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-lg flex items-center gap-1.5 z-10">
+                <Sparkles size={11} className="text-amber-400 animate-pulse" />
+                <span>Tradición a la Leña</span>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="relative w-full rounded-3xl overflow-hidden shadow-md aspect-[2/1] bg-gradient-to-br from-primary/10 via-secondary/15 to-primary/5 flex flex-col items-center justify-center text-center p-4 border border-dashed border-primary/30">
             <Flame className="w-8 h-8 text-primary/40 mb-1" />
@@ -357,13 +400,14 @@ export default function App() {
 
               {/* Imagen de la Categoría */}
               {cat.imagen ? (
-                <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] mb-3 border border-orange-100">
+                <div className="relative w-full rounded-2xl overflow-hidden shadow-md aspect-[21/9] mb-3 border border-orange-200/80 group">
                   <img
                     src={cat.imagen}
                     alt={cat.nombre}
-                    className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
+                    className="w-full h-full object-cover cursor-pointer group-hover:scale-105 transition-transform duration-300"
                     onClick={() => setSelectedImage(cat.imagen || null)}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                 </div>
               ) : cat.id !== 'promociones' ? (
                 <div className="w-full rounded-2xl overflow-hidden shadow-sm aspect-[21/9] bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 flex flex-col items-center justify-center text-center p-3 border border-dashed border-primary/25 mb-3">
@@ -375,80 +419,114 @@ export default function App() {
             </div>
 
             {/* Lista de Platos de la Categoría */}
-            <div className="flex flex-col gap-3">
-              {cat.items.map((dish, idx) => {
-                if (dish.imagen) {
+            {cat.items.some(i => i.imagen) ? (
+              <div className="grid grid-cols-2 gap-3">
+                {cat.items.map((dish, idx) => {
+                  if (dish.imagen) {
+                    return (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ y: -2 }}
+                        className="bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-200/80 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                      >
+                        {/* Imagen completa con zoom */}
+                        <div
+                          className="relative w-full aspect-square bg-stone-900/5 flex items-center justify-center overflow-hidden cursor-pointer group border-b border-orange-100"
+                          onClick={() => setSelectedImage(dish.imagen || null)}
+                        >
+                          <img
+                            src={dish.imagen}
+                            alt={dish.nombre}
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          />
+
+                          {dish.badge && (
+                            <span className="absolute top-2 left-2 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow border border-amber-300/40 flex items-center gap-0.5 tracking-wider z-10">
+                              <Flame size={10} className="text-amber-300" />
+                              {dish.badge}
+                            </span>
+                          )}
+
+                          <div className="absolute bottom-1.5 right-1.5 bg-black/65 backdrop-blur-md text-white text-[8px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow z-10">
+                            <Eye size={10} />
+                            Ampliar
+                          </div>
+                        </div>
+
+                        {/* Información y botón */}
+                        <div className="p-3 flex flex-col justify-between flex-1 bg-gradient-to-b from-white to-orange-50/20">
+                          <div>
+                            <h4 className="font-dish font-bold text-stone-900 text-[13px] leading-tight line-clamp-2">
+                              {dish.nombre}
+                            </h4>
+                            {dish.descripcion && (
+                              <p className="text-[10px] text-stone-500 leading-snug mt-1 line-clamp-2">
+                                {dish.descripcion}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="flex items-center justify-between pt-2 mt-2 border-t border-stone-100">
+                            <div>
+                              <span className="text-[8px] text-stone-400 font-bold uppercase tracking-wider block">Precio</span>
+                              <span className="font-dish font-black text-primary text-[15px] leading-none">
+                                {dish.precio}
+                              </span>
+                            </div>
+
+                            <motion.button
+                              whileTap={{ scale: 0.92 }}
+                              onClick={() => addToCart(dish)}
+                              className="bg-primary hover:bg-red-700 text-white px-2.5 py-1.5 rounded-xl font-bold text-[11px] flex items-center gap-1 shadow-sm transition-all"
+                            >
+                              <Plus size={14} strokeWidth={3} />
+                              Pedir
+                            </motion.button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  }
+
                   return (
                     <motion.div
                       key={idx}
                       whileHover={{ y: -2 }}
-                      className="bg-white rounded-3xl overflow-hidden shadow-md border border-orange-200/80 hover:shadow-xl transition-all duration-200 flex flex-col"
+                      className="bg-white rounded-2xl p-3 shadow-sm border border-stone-100 hover:border-primary/30 flex flex-col justify-between"
                     >
-                      {/* Imagen de la Promo con zoom */}
-                      <div
-                        className="relative w-full aspect-[4/3] bg-stone-900 overflow-hidden cursor-pointer group"
-                        onClick={() => setSelectedImage(dish.imagen || null)}
-                      >
-                        <img
-                          src={dish.imagen}
-                          alt={dish.nombre}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 pointer-events-none" />
-
-                        {dish.badge && (
-                          <span className="absolute top-3 left-3 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-lg border border-amber-300/40 flex items-center gap-1 tracking-wider z-10">
-                            <Flame size={13} className="text-amber-300" />
-                            {dish.badge}
-                          </span>
+                      <div>
+                        <h4 className="font-dish font-bold text-stone-900 text-[13px] leading-snug line-clamp-2">
+                          {dish.nombre}
+                        </h4>
+                        {dish.descripcion && (
+                          <p className="text-[10px] text-stone-500 leading-snug mt-1 line-clamp-2">
+                            {dish.descripcion}
+                          </p>
                         )}
-
-                        <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5 shadow z-10">
-                          <Eye size={12} />
-                          Toca para ampliar
-                        </div>
                       </div>
-
-                      {/* Información y botón */}
-                      <div className="p-4 flex flex-col gap-2 bg-gradient-to-b from-white to-orange-50/20">
-                        <div>
-                          <h4 className="font-dish font-extrabold text-stone-900 text-[16px] leading-snug">
-                            {dish.nombre}
-                          </h4>
-                          {dish.descripcion && (
-                            <p className="text-[12px] text-stone-600 leading-relaxed mt-1">
-                              {dish.descripcion}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className="flex items-center justify-between pt-3 mt-1 border-t border-stone-100">
-                          <div>
-                            <span className="text-[9px] text-stone-400 font-bold uppercase tracking-wider block">Precio Promo</span>
-                            <span className="font-dish font-black text-primary text-[20px] leading-none">
-                              {dish.precio}
-                            </span>
-                          </div>
-
-                          <motion.button
-                            whileTap={{ scale: 0.92 }}
-                            onClick={() => addToCart(dish)}
-                            className="bg-primary hover:bg-red-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-md shadow-primary/25 transition-all"
-                          >
-                            <Plus size={16} strokeWidth={3} />
-                            Agregar al Pedido
-                          </motion.button>
-                        </div>
+                      <div className="flex items-center justify-between pt-2 mt-2 border-t border-stone-100">
+                        <span className="font-dish font-extrabold text-primary text-[14px]">
+                          {dish.precio}
+                        </span>
+                        <motion.button
+                          whileTap={{ scale: 0.85 }}
+                          onClick={() => addToCart(dish)}
+                          className="w-7 h-7 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-colors"
+                        >
+                          <Plus size={14} strokeWidth={3} />
+                        </motion.button>
                       </div>
                     </motion.div>
                   );
-                }
-
-                return (
+                })}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2.5">
+                {cat.items.map((dish, idx) => (
                   <motion.div
                     key={idx}
                     whileHover={{ y: -2 }}
-                    className="bg-white rounded-2xl p-4 shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex items-center justify-between gap-3"
+                    className="bg-white rounded-2xl p-3.5 shadow-sm border border-stone-100 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex items-center justify-between gap-3"
                   >
                     <div className="flex-1 min-w-0">
                       <h4 className="font-dish font-bold text-stone-900 text-[14px] leading-snug mb-0.5">
@@ -475,9 +553,9 @@ export default function App() {
                       </motion.button>
                     </div>
                   </motion.div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            )}
           </section>
         ))}
 
@@ -496,10 +574,16 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-8 pt-8 pb-10 border-t border-stone-200 flex flex-col items-center justify-center">
+        <footer className="mt-8 pt-8 pb-10 border-t border-stone-200 flex flex-col items-center justify-center text-center">
           <p className="font-title text-2xl text-primary mb-3 uppercase tracking-wide">{RESTAURANTE_NAME}</p>
           {LOGO_FOOTER_PATH ? (
-            <img src={LOGO_FOOTER_PATH} alt="Logo" className="w-28 h-28 mb-5 object-contain" />
+            <div className="relative p-1 rounded-2xl bg-gradient-to-tr from-amber-400 via-red-500 to-amber-300 shadow-md mb-4">
+              <img 
+                src={LOGO_FOOTER_PATH} 
+                alt="Logo El Pollón de Manchester" 
+                className="w-24 h-24 object-cover rounded-xl" 
+              />
+            </div>
           ) : (
             <div className="w-28 h-28 mb-5 rounded-2xl border border-dashed border-primary/30 bg-primary/5 flex items-center justify-center text-center p-2">
               <span className="font-dish font-bold text-[10px] text-primary uppercase tracking-wide">aca va a imagen</span>
@@ -540,8 +624,8 @@ export default function App() {
                   <ShoppingBag size={22} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Tu Pedido</p>
-                  <p className="font-extrabold text-stone-900 text-base">{cartCount} {cartCount === 1 ? 'artículo' : 'artículos'}</p>
+                  <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Tu Pedido ({cartCount} {cartCount === 1 ? 'ítem' : 'ítems'})</p>
+                  <p className="font-dish font-black text-primary text-lg leading-tight">S/. {calculateTotal().toFixed(2)}</p>
                 </div>
               </div>
               <button

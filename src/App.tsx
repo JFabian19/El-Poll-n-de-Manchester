@@ -9,7 +9,7 @@ import { DEFAULT_MENU_DATA, Dish, Category } from './data/menuData';
 // ==========================================
 const RESTAURANTE_NAME = "El Pollón de Manchester";
 const RESTAURANTE_SLOGAN = "Pollos a la Brasa & Parrillas";
-const WHATSAPP_NUMBER = "51952830614"; // Número de WhatsApp para pedidos
+const WHATSAPP_NUMBER = "51999223761"; // Número de WhatsApp para pedidos
 const FACEBOOK_URL = "https://facebook.com/";
 const MAPS_URL = "https://www.google.com/maps/";
 const LOGO_FOOTER_PATH = "/logo-pollon.webp"; // Logo en public/
@@ -32,6 +32,19 @@ const LOCAL_CATEGORY_IMAGES: Record<string, string> = {
   "Tragos": "/categories/tragos.webp",
   "Licores": "/categories/licores.webp",
   "Vinos": "/categories/vinos.webp",
+};
+
+// Mapa de imágenes locales y badges por plato (Promociones)
+const LOCAL_DISH_IMAGES: Record<string, string> = {
+  "Promo Martes - 1/2 Pollo a la Brasa": "/promos/promo-martes.webp",
+  "Jueves de Patas - 1/4 de Pollo": "/promos/promo-jueves.webp",
+  "Miércoles de Mostrito": "/promos/promo-miercoles.webp",
+};
+
+const LOCAL_DISH_BADGES: Record<string, string> = {
+  "Promo Martes - 1/2 Pollo a la Brasa": "Promo Martes",
+  "Jueves de Patas - 1/4 de Pollo": "Jueves de Patas",
+  "Miércoles de Mostrito": "Miércoles de Mostrito",
 };
 
 interface CartItem {
@@ -105,11 +118,19 @@ export default function App() {
             imagen: customUrl && customUrl.length > 0 ? customUrl : defaultImg,
             items: dishes
               .filter(d => (d.categoría || '').trim().toLowerCase() === catName.toLowerCase())
-              .map(d => ({
-                nombre: d['nombre del plato'] || '',
-                descripcion: d.descripción || '',
-                precio: d.precio || '',
-              }))
+              .map(d => {
+                const dishName = (d['nombre del plato'] || '').trim();
+                const customDishImg = (d['URL de imagen'] || (d as any)['imagen'] || '').trim();
+                const defaultDishImg = LOCAL_DISH_IMAGES[dishName] || undefined;
+
+                return {
+                  nombre: dishName,
+                  descripcion: d.descripción || '',
+                  precio: d.precio || '',
+                  imagen: customDishImg.length > 0 ? customDishImg : defaultDishImg,
+                  badge: LOCAL_DISH_BADGES[dishName] || undefined,
+                };
+              })
           };
         });
 

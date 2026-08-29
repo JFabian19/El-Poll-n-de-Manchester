@@ -8,6 +8,7 @@ export interface SheetDish {
   'nombre del plato': string;
   descripción: string;
   precio: string;
+  'URL de imagen'?: string;
 }
 
 export interface SheetCategory {

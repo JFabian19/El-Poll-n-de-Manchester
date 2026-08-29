@@ -1,68 +1,68 @@
-categoría,nombre del plato,descripción,precio
-Promociones,Promo Martes - 1/2 Pollo a la Brasa,1/2 Pollo a la brasa + papas fritas + ensalada + cremas + 1 gaseosa personal (Inca Kola / Coca Cola).,S/. 35.00
-Promociones,Jueves de Patas - 1/4 de Pollo,Todos los jueves: 1/4 de pollo a la brasa + papas fritas + ensalada fresca + cremas.,S/. 12.00
-Promociones,Miércoles de Mostrito,¡Todos los miércoles por la compra de un mostrito El Pollón te pone la gaseosa Pepsi 300ml! (Mostrito con arroz chaufa + papas + cremas).,S/. 13.00
-Pollos a la Brasa,1/8 de Pollo a la Brasa,+ papas + ensalada + cremas,S/. 11.00
-Pollos a la Brasa,1/4 de Pollo a la Brasa,+ papas + ensalada + cremas,S/. 17.00
-Pollos a la Brasa,Mostrito,+ Arroz chaufa + papas + cremas,S/. 13.00
-Pollos a la Brasa,Mostro,+ Arroz chaufa + papas + cremas,S/. 19.00
-Pollos a la Brasa,1/2 Pollo a la Brasa,+ papas + ensalada + cremas,S/. 32.00
-Pollos a la Brasa,1 Pollo a la Brasa entero,+ papas + ensalada + cremas,S/. 58.00
-Pollos a la Brasa,1 Pollo a la Brasa + 1/4 solo,+ papas + ensalada + cremas,S/. 63.00
-Pollos a la Brasa,1 Pollo a la Brasa + Gaseosa 1.5 Lt.,+ papas + ensalada + cremas,S/. 63.00
-Pollos a la Brasa,MEGA MANCHESTER,1 Pollo + 1/4 pollo solo + gaseosas 1.5 Lt. + papas + ensalada + cremas,S/. 68.00
-Pollos a la Brasa,DON MANCHESTER,1 Pollo + 1/2 pollo solo + gaseosa 1.5 Lt. + papas + ensalada + cremas.,S/. 78.00
-Combos Parrilleros,COMBO FILETE,1 Filete de pollo + 1 Anticucho + 1 chorizo + papas + ensalada + cremas,S/. 27.00
-Combos Parrilleros,COMBO CHULETA,1 chuleta + molleja + 1 anticucho + papas + ensalada + cremas,S/. 29.00
-Combos Parrilleros,COMBO CHURRASCO,1 Churrasco + 1 brocheta + 1 chorizo + papas + ensalada + cremas,S/. 31.00
-Combos Parrilleros,COMBO LOMO,1 Lomo + 1 brocheta + 1 chorizo + papas + ensalada + cremas,S/. 35.00
-Carnes a la Parrilla,Chuleta,+ papas + ensalada + cremas,S/. 17.00
-Carnes a la Parrilla,Churrasco,+ papas + ensalada + cremas,S/. 19.00
-Carnes a la Parrilla,Filete,+ papas + ensalada + cremas,S/. 16.00
-Carnes a la Parrilla,Anticucho,+ papas + ensalada + cremas,S/. 16.00
-Carnes a la Parrilla,Mollejas,+ papas + ensalada + cremas,S/. 16.00
-Carnes a la Parrilla,Lomo Fino,+ papas + ensalada + cremas,S/. 29.00
-Carnes a la Parrilla,Bife,+ papas + ensalada + cremas,S/. 27.00
-Carnes a la Parrilla,Costilla a la BBQ,+ papas + ensalada + cremas,S/. 35.00
-Carnes a la Parrilla,Filete de Pierna,+ papas + ensalada + cremas,S/. 15.00
-Carnes a la Parrilla,Chorizo (2),+ papas + ensalada + cremas,S/. 15.00
-Parrillas Familiares,PARRILLA PARA (2),1 Jugoso Lomo + filete + (2) anticuchos + mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o Limonada 1.5 Lt.,S/. 82.00
-Parrillas Familiares,PARRILLA FAMILIAR,+ Jugoso Lomo + filete + 1 chuleta de cerdo + 2 anticuchos + 2 chorizos + mollejitas + ensalada + cremas + gaseosa 1.5 Lt. o Limonada 1.5 Lt.,S/. 98.00
-Parrillas Familiares,PARRILLA LA POLLONA,1 Jugoso Lomo + 1 Bife + 1/4 de pollo a la brasa + 2 anticuchos + 2 chorizos + Mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o + Limonada 1.5 Lt. o Vino Tabernero Borgoña.,S/. 110.00
-Menú Parrillero,Menú Filete de Pollo,Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso chicha o limonada,S/. 11.00
-Menú Parrillero,Menú Churrasco,Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada,S/. 12.00
-Menú Parrillero,Menú Lomo Saltado,Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensaladas + cremas + 1 vaso de chicha o limonada,S/. 12.00
-Menú Parrillero,Menú Chuleta,Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.,S/. 12.00
-Platos a la Carta,Lomo Saltado,,S/. 20.00
-Platos a la Carta,Pollo Saltado,,S/. 18.00
-Platos a la Carta,Tallarín Saltado de Pollo,,S/. 18.00
-Platos a la Carta,Tallarín Saltado de Carne,,S/. 20.00
-Platos a la Carta,Chaufa de Carne,,S/. 20.00
-Guarniciones,1 Porción de Papas,,S/. 17.00
-Guarniciones,1/2 Porción de Papas,,S/. 9.00
-Guarniciones,1 Porción de Arroz Chaufa,,S/. 12.00
-Guarniciones,Ensalada Clásica,,S/. 6.00
-Gaseosas,Mediana,,S/. 2.50
-Gaseosas,Gaseosa 1/2 Lt.,,S/. 3.50
-Gaseosas,Gordita,,S/. 5.00
-Gaseosas,Gaseosa 1 Litro,,S/. 7.00
-Gaseosas,Gaseosa 1.5 Litro,,S/. 10.00
-Gaseosas,Gaseosa 3 Litros,,S/. 15.00
-Gaseosas,Agua,,S/. 2.50
-Bebidas,Chicha,,S/. 10.00
-Bebidas,Maracuya,,S/. 10.00
-Bebidas,Limonada,,S/. 12.00
-Bebidas,Limonada Frozen,,S/. 14.00
-Tragos,Pisco Saur,,S/. 10.00
-Tragos,Algarrobina,,S/. 12.00
-Tragos,Piña Colada,,S/. 12.00
-Tragos,Daiquiri de Durazno,,S/. 12.00
-Tragos,Chilcano de Pisco,,S/. 10.00
-Tragos,Cuba Libre,,S/. 10.00
-Tragos,Peru Libre,,S/. 10.00
-Tragos,Machu Picchu,,S/. 12.00
-Licores,Pilsen,,S/. 9.00
-Licores,Cuzqueña Negra,,S/. 10.00
-Licores,Cuzqueña de Trigo,,S/. 10.00
-Vinos,Vino Santiago Queirolo,,S/. 35.00
-Vinos,Vino Rose,,S/. 35.00
+categoría,nombre del plato,descripción,precio,URL de imagen
+Promociones,Promo Martes - 1/2 Pollo a la Brasa,1/2 Pollo a la brasa + papas fritas + ensalada + cremas + 1 gaseosa personal (Inca Kola / Coca Cola).,S/. 35.00,
+Promociones,Jueves de Patas - 1/4 de Pollo,Todos los jueves: 1/4 de pollo a la brasa + papas fritas + ensalada fresca + cremas.,S/. 12.00,
+Promociones,Miércoles de Mostrito,¡Todos los miércoles por la compra de un mostrito El Pollón te pone la gaseosa Pepsi 300ml! (Mostrito con arroz chaufa + papas + cremas).,S/. 13.00,
+Pollos a la Brasa,1/8 de Pollo a la Brasa,+ papas + ensalada + cremas,S/. 11.00,
+Pollos a la Brasa,1/4 de Pollo a la Brasa,+ papas + ensalada + cremas,S/. 17.00,
+Pollos a la Brasa,Mostrito,+ Arroz chaufa + papas + cremas,S/. 13.00,
+Pollos a la Brasa,Mostro,+ Arroz chaufa + papas + cremas,S/. 19.00,
+Pollos a la Brasa,1/2 Pollo a la Brasa,+ papas + ensalada + cremas,S/. 32.00,
+Pollos a la Brasa,1 Pollo a la Brasa entero,+ papas + ensalada + cremas,S/. 58.00,
+Pollos a la Brasa,1 Pollo a la Brasa + 1/4 solo,+ papas + ensalada + cremas,S/. 63.00,
+Pollos a la Brasa,1 Pollo a la Brasa + Gaseosa 1.5 Lt.,+ papas + ensalada + cremas,S/. 63.00,
+Pollos a la Brasa,MEGA MANCHESTER,1 Pollo + 1/4 pollo solo + gaseosas 1.5 Lt. + papas + ensalada + cremas,S/. 68.00,
+Pollos a la Brasa,DON MANCHESTER,1 Pollo + 1/2 pollo solo + gaseosa 1.5 Lt. + papas + ensalada + cremas.,S/. 78.00,
+Combos Parrilleros,COMBO FILETE,1 Filete de pollo + 1 Anticucho + 1 chorizo + papas + ensalada + cremas,S/. 27.00,
+Combos Parrilleros,COMBO CHULETA,1 chuleta + molleja + 1 anticucho + papas + ensalada + cremas,S/. 29.00,
+Combos Parrilleros,COMBO CHURRASCO,1 Churrasco + 1 brocheta + 1 chorizo + papas + ensalada + cremas,S/. 31.00,
+Combos Parrilleros,COMBO LOMO,1 Lomo + 1 brocheta + 1 chorizo + papas + ensalada + cremas,S/. 35.00,
+Carnes a la Parrilla,Chuleta,+ papas + ensalada + cremas,S/. 17.00,
+Carnes a la Parrilla,Churrasco,+ papas + ensalada + cremas,S/. 19.00,
+Carnes a la Parrilla,Filete,+ papas + ensalada + cremas,S/. 16.00,
+Carnes a la Parrilla,Anticucho,+ papas + ensalada + cremas,S/. 16.00,
+Carnes a la Parrilla,Mollejas,+ papas + ensalada + cremas,S/. 16.00,
+Carnes a la Parrilla,Lomo Fino,+ papas + ensalada + cremas,S/. 29.00,
+Carnes a la Parrilla,Bife,+ papas + ensalada + cremas,S/. 27.00,
+Carnes a la Parrilla,Costilla a la BBQ,+ papas + ensalada + cremas,S/. 35.00,
+Carnes a la Parrilla,Filete de Pierna,+ papas + ensalada + cremas,S/. 15.00,
+Carnes a la Parrilla,Chorizo (2),+ papas + ensalada + cremas,S/. 15.00,
+Parrillas Familiares,PARRILLA PARA (2),1 Jugoso Lomo + filete + (2) anticuchos + mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o Limonada 1.5 Lt.,S/. 82.00,
+Parrillas Familiares,PARRILLA FAMILIAR,+ Jugoso Lomo + filete + 1 chuleta de cerdo + 2 anticuchos + 2 chorizos + mollejitas + ensalada + cremas + gaseosa 1.5 Lt. o Limonada 1.5 Lt.,S/. 98.00,
+Parrillas Familiares,PARRILLA LA POLLONA,1 Jugoso Lomo + 1 Bife + 1/4 de pollo a la brasa + 2 anticuchos + 2 chorizos + Mollejitas + papas + ensalada + cremas + gaseosas 1.5 Lt. o + Limonada 1.5 Lt. o Vino Tabernero Borgoña.,S/. 110.00,
+Menú Parrillero,Menú Filete de Pollo,Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso chicha o limonada,S/. 11.00,
+Menú Parrillero,Menú Churrasco,Válido Lun a Vie 2pm - 5pm (No feriados). arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada,S/. 12.00,
+Menú Parrillero,Menú Lomo Saltado,Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensaladas + cremas + 1 vaso de chicha o limonada,S/. 12.00,
+Menú Parrillero,Menú Chuleta,Válido Lun a Vie 2pm - 5pm (No feriados). Arroz + papas + ensalada + cremas + 1 vaso de chicha o limonada.,S/. 12.00,
+Platos a la Carta,Lomo Saltado,,S/. 20.00,
+Platos a la Carta,Pollo Saltado,,S/. 18.00,
+Platos a la Carta,Tallarín Saltado de Pollo,,S/. 18.00,
+Platos a la Carta,Tallarín Saltado de Carne,,S/. 20.00,
+Platos a la Carta,Chaufa de Carne,,S/. 20.00,
+Guarniciones,1 Porción de Papas,,S/. 17.00,
+Guarniciones,1/2 Porción de Papas,,S/. 9.00,
+Guarniciones,1 Porción de Arroz Chaufa,,S/. 12.00,
+Guarniciones,Ensalada Clásica,,S/. 6.00,
+Gaseosas,Mediana,,S/. 2.50,
+Gaseosas,Gaseosa 1/2 Lt.,,S/. 3.50,
+Gaseosas,Gordita,,S/. 5.00,
+Gaseosas,Gaseosa 1 Litro,,S/. 7.00,
+Gaseosas,Gaseosa 1.5 Litro,,S/. 10.00,
+Gaseosas,Gaseosa 3 Litros,,S/. 15.00,
+Gaseosas,Agua,,S/. 2.50,
+Bebidas,Chicha,,S/. 10.00,
+Bebidas,Maracuya,,S/. 10.00,
+Bebidas,Limonada,,S/. 12.00,
+Bebidas,Limonada Frozen,,S/. 14.00,
+Tragos,Pisco Saur,,S/. 10.00,
+Tragos,Algarrobina,,S/. 12.00,
+Tragos,Piña Colada,,S/. 12.00,
+Tragos,Daiquiri de Durazno,,S/. 12.00,
+Tragos,Chilcano de Pisco,,S/. 10.00,
+Tragos,Cuba Libre,,S/. 10.00,
+Tragos,Peru Libre,,S/. 10.00,
+Tragos,Machu Picchu,,S/. 12.00,
+Licores,Pilsen,,S/. 9.00,
+Licores,Cuzqueña Negra,,S/. 10.00,
+Licores,Cuzqueña de Trigo,,S/. 10.00,
+Vinos,Vino Santiago Queirolo,,S/. 35.00,
+Vinos,Vino Rose,,S/. 35.00,

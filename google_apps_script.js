@@ -151,7 +151,7 @@ function inicializarHojas() {
 
   // 2. Hoja Platos
   var platosSheet = getOrCreateSheet(ss, ['Platos', 'Menu'], 'Platos');
-  ensureHeaders(platosSheet, ['categoría', 'nombre del plato', 'descripción', 'precio']);
+  ensureHeaders(platosSheet, ['categoría', 'nombre del plato', 'descripción', 'precio', 'URL de imagen']);
 
   // 3. Hoja Fidelización
   var fidSheet = getOrCreateSheet(ss, ['Fidelización', 'Fidelizacion', 'Cumpleaños'], 'Fidelización');

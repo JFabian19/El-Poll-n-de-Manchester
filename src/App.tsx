@@ -18,7 +18,21 @@ const MARQUEE_TEXT = "🔥 ¡BIENVENIDOS A EL POLLÓN DE MANCHESTER! • EL MEJO
 // ==========================================
 
 // Mapa de imágenes locales por categoría
-const LOCAL_CATEGORY_IMAGES: Record<string, string> = {};
+const LOCAL_CATEGORY_IMAGES: Record<string, string> = {
+  "Promociones": "/categories/promociones.webp",
+  "Pollos a la Brasa": "/categories/pollos-a-la-brasa.webp",
+  "Combos Parrilleros": "/categories/combos-parrilleros.webp",
+  "Carnes a la Parrilla": "/categories/carnes-a-la-parrilla.webp",
+  "Parrillas Familiares": "/categories/parrillas-familiares.webp",
+  "Menú Parrillero": "/categories/menu-parrillero.webp",
+  "Platos a la Carta": "/categories/platos-a-la-carta.webp",
+  "Guarniciones": "/categories/guarniciones.webp",
+  "Gaseosas": "/categories/gaseosas.webp",
+  "Bebidas": "/categories/bebidas.webp",
+  "Tragos": "/categories/tragos.webp",
+  "Licores": "/categories/licores.webp",
+  "Vinos": "/categories/vinos.webp",
+};
 
 interface CartItem {
   nombre: string;
@@ -80,19 +94,24 @@ export default function App() {
           return;
         }
 
-        const formattedCategories: Category[] = cats.map(c => ({
-          id: c.nombre.toLowerCase().replace(/\s+/g, '-'),
-          nombre: c.nombre,
-          imagen: LOCAL_CATEGORY_IMAGES[c.nombre] || c['URL de imagen'] || undefined,
-          items: dishes
-            .filter(d => d.categoría === c.nombre)
-            .map(d => ({
-              nombre: d['nombre del plato'],
-              descripcion: d.descripción,
-              precio: d.precio,
-              imagen: (d as any)['URL de imagen'] || (d as any).imagen || undefined
-            }))
-        }));
+        const formattedCategories: Category[] = cats.map(c => {
+          const catName = (c.nombre || '').trim();
+          const customUrl = c['URL de imagen']?.trim();
+          const defaultImg = LOCAL_CATEGORY_IMAGES[catName] || undefined;
+
+          return {
+            id: catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-'),
+            nombre: catName,
+            imagen: customUrl && customUrl.length > 0 ? customUrl : defaultImg,
+            items: dishes
+              .filter(d => (d.categoría || '').trim().toLowerCase() === catName.toLowerCase())
+              .map(d => ({
+                nombre: d['nombre del plato'] || '',
+                descripcion: d.descripción || '',
+                precio: d.precio || '',
+              }))
+          };
+        });
 
         setCategories(formattedCategories);
         if (formattedCategories.length > 0) {

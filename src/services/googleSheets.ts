@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 
-// Coloca aquí tu ID de Google Sheets (lo encuentras en la URL de tu hoja de cálculo)
-export const SHEET_ID = '';
+// Coloca aquí tu ID de Google Sheets (proporcionado por el usuario)
+export const SHEET_ID = '1XG4ifCVo8ZziQytvgZRFvZLu4Bgv0XoUo4yJYB-ClFw';
 
 export interface SheetDish {
   categoría: string;
@@ -16,10 +16,15 @@ export interface SheetCategory {
 }
 
 export const fetchSheetData = async <T>(sheetName: string): Promise<T[]> => {
+  if (!SHEET_ID) return [];
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
   
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      console.warn(`No se pudo obtener la hoja "${sheetName}" (status: ${response.status}). Usando datos locales.`);
+      return [];
+    }
     const csvText = await response.text();
     
     return new Promise((resolve, reject) => {
@@ -36,8 +41,8 @@ export const fetchSheetData = async <T>(sheetName: string): Promise<T[]> => {
   }
 };
 
-// Configura aquí la URL de tu Google Apps Script Web App para poder enviar datos
-export const WEB_APP_URL = '';
+// Configura aquí la URL de tu Google Apps Script Web App
+export const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbztknhQghHuJ8O09buiA6GnqRLmbqEFIpr9zqaX0-rtTtZlyCOyFkxQtpoTn3OrLq3DzQ/exec';
 
 export const submitSheetData = async (sheetName: string, data: any): Promise<boolean> => {
   if (!WEB_APP_URL) {
@@ -48,9 +53,9 @@ export const submitSheetData = async (sheetName: string, data: any): Promise<boo
   try {
     const response = await fetch(WEB_APP_URL, {
       method: 'POST',
-      mode: 'no-cors', // Importante para evitar problemas de CORS con Apps Script
+      mode: 'no-cors', // Evita problemas de CORS con Apps Script
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain;charset=utf-8',
       },
       body: JSON.stringify({
         sheetName,
@@ -64,3 +69,4 @@ export const submitSheetData = async (sheetName: string, data: any): Promise<boo
     return false;
   }
 };
+
